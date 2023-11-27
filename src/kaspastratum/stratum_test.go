@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/kaspanet/kaspad/app/appmessage"
-	"github.com/kaspanet/kaspad/util/difficulty"
+	"github.com/karlsen-network/karlsend/app/appmessage"
+	"github.com/karlsen-network/karlsend/util/difficulty"
 )
 
 func TestHeaderSerialization(t *testing.T) {

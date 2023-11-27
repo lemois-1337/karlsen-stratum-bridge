@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/kaspanet/kaspad/util"
+	"github.com/karlsen-network/karlsend/util"
 	"github.com/mattn/go-colorable"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
