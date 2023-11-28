@@ -31,11 +31,11 @@ Youll see output about downloading images and such and eventually see output lik
 
 At this point everything is running successfully in the background. 
 
-- kls_bridge is running on port :5555
+- kls_bridge is running on port :31337
 - prometheus is running on port :9090
 - grafana is running on port :3000
 
-You may point your miners the IP address of the computer you installed on at port 5555. I you're unsure your current IP then run `ipconfig` on windows and `ifconfig` in linux. You'll put this IP and the port into your miner config.
+You may point your miners the IP address of the computer you installed on at port 31337. I you're unsure your current IP then run `ipconfig` on windows and `ifconfig` in linux. You'll put this IP and the port into your miner config.
 
 ## Accessing grafana
 

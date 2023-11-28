@@ -80,7 +80,7 @@ Note: This does requires that docker is installed.
 
 `docker compose -f docker-compose-all.yml up -d` will run the bridge with
 default settings. This assumes a local karlsend node with default port
-settings and exposes port 5555 to incoming stratum connections.
+settings and exposes port 31337 to incoming stratum connections.
 
 This also spins up a local prometheus and grafana instance that gather
 stats and host the metrics dashboard. Once the services are up and
@@ -98,15 +98,15 @@ so that the bridge is up.
 Note: This does not require pulling down the repo, it only requires that
 docker is installed.
 
-`docker run -p 5555:5555 onemorebsmith/karlsen_bridge:latest --log=false`
+`docker run -p 31337:31337 onemorebsmith/karlsen_bridge:latest --log=false`
 
 This will run the bridge with default settings. This assumes a local
-karlsend node with default port settings and exposes port 5555 to incoming
+karlsend node with default port settings and exposes port 31337 to incoming
 stratum connections.
 
 Advanced and customized configuration.
 
-`docker run -p {stratum_port}:5555 onemorebsmith/karlsen_bridge --log=false --karlsen={karlsend_address} --stats={false}`
+`docker run -p {stratum_port}:31337 onemorebsmith/karlsen_bridge --log=false --karlsen={karlsend_address} --stats={false}`
 
 This will run the bridge targeting a karlsend node at {karlsend_address}.
 Stratum port accepting connections on {stratum_port}, and only logging
