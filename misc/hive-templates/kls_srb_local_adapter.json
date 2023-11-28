@@ -8,7 +8,7 @@
             "miner": "srbminer",
             "miner_config": {
                 "url": "127.0.0.1:5555",
-                "algo": "kaspa",
+                "algo": "karlsen",
                 "worker": "%WORKER_NAME%",
                 "user_config": "--disable-cpu"
             },
@@ -24,7 +24,7 @@
                 "url": "YOUR_KARLSEND_NODE_IP_HERE:42110",
                 "miner": "ks_bridge",
                 "template": "doesnt.matter",
-                "install_url": "https://github.com/onemorebsmith/kaspa-stratum-bridge/releases/download/v1.1.2/ks_bridge-1.1.2_hive.tar.gz"
+                "install_url": "https://github.com/onemorebsmith/karlsen-stratum-bridge/releases/download/v1.1.2/ks_bridge-1.1.2_hive.tar.gz"
             },
             "pool_geo": []
         }

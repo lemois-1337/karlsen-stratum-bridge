@@ -1,4 +1,4 @@
-CMD_PATH="../cmd/kaspabridge"
+CMD_PATH="../cmd/karlsenbridge"
 rm -rf release
 mkdir -p release
 cd release
