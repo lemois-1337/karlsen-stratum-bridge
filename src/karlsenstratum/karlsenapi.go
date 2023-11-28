@@ -12,7 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
-type KaspaApi struct {
+type KarlsenApi struct {
 	address       string
 	blockWaitTime time.Duration
 	logger        *zap.SugaredLogger
@@ -20,13 +20,13 @@ type KaspaApi struct {
 	connected     bool
 }
 
-func NewKaspaAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*KaspaApi, error) {
+func NewKarlsenAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*KarlsenApi, error) {
 	client, err := rpcclient.NewRPCClient(address)
 	if err != nil {
 		return nil, err
 	}
 
-	return &KaspaApi{
+	return &KarlsenApi{
 		address:       address,
 		blockWaitTime: blockWaitTime,
 		logger:        logger.With(zap.String("component", "karlsenapi:"+address)),
@@ -35,13 +35,13 @@ func NewKaspaAPI(address string, blockWaitTime time.Duration, logger *zap.Sugare
 	}, nil
 }
 
-func (ks *KaspaApi) Start(ctx context.Context, blockCb func()) {
+func (ks *KarlsenApi) Start(ctx context.Context, blockCb func()) {
 	ks.waitForSync(true)
 	go ks.startBlockTemplateListener(ctx, blockCb)
 	go ks.startStatsThread(ctx)
 }
 
-func (ks *KaspaApi) startStatsThread(ctx context.Context) {
+func (ks *KarlsenApi) startStatsThread(ctx context.Context) {
 	ticker := time.NewTicker(30 * time.Second)
 	for {
 		select {
@@ -64,7 +64,7 @@ func (ks *KaspaApi) startStatsThread(ctx context.Context) {
 	}
 }
 
-func (ks *KaspaApi) reconnect() error {
+func (ks *KarlsenApi) reconnect() error {
 	if ks.karlsend != nil {
 		return ks.karlsend.Reconnect()
 	}
@@ -77,7 +77,7 @@ func (ks *KaspaApi) reconnect() error {
 	return nil
 }
 
-func (s *KaspaApi) waitForSync(verbose bool) error {
+func (s *KarlsenApi) waitForSync(verbose bool) error {
 	if verbose {
 		s.logger.Info("checking karlsend sync state")
 	}
@@ -89,7 +89,7 @@ func (s *KaspaApi) waitForSync(verbose bool) error {
 		if clientInfo.IsSynced {
 			break
 		}
-		s.logger.Warn("Kaspa is not synced, waiting for sync before starting bridge")
+		s.logger.Warn("Karlsen is not synced, waiting for sync before starting bridge")
 		time.Sleep(5 * time.Second)
 	}
 	if verbose {
@@ -98,7 +98,7 @@ func (s *KaspaApi) waitForSync(verbose bool) error {
 	return nil
 }
 
-func (s *KaspaApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
+func (s *KarlsenApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
 	blockReadyChan := make(chan bool)
 	err := s.karlsend.RegisterForNewBlockTemplateNotifications(func(_ *appmessage.NewBlockTemplateNotificationMessage) {
 		blockReadyChan <- true
@@ -129,7 +129,7 @@ func (s *KaspaApi) startBlockTemplateListener(ctx context.Context, blockReadyCb 
 	}
 }
 
-func (ks *KaspaApi) GetBlockTemplate(
+func (ks *KarlsenApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
 	template, err := ks.karlsend.GetBlockTemplate(client.WalletAddr,
 		fmt.Sprintf(`'%s' via onemorebsmith/karlsen-stratum-bridge_%s`, client.RemoteApp, version))

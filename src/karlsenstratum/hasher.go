@@ -29,7 +29,7 @@ type karlsenDiff struct {
 	targetValue *big.Int // previously know as fixedDifficultyBI
 }
 
-func newKaspaDiff() *karlsenDiff {
+func newKarlsenDiff() *karlsenDiff {
 	return &karlsenDiff{}
 }
 

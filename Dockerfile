@@ -1,6 +1,6 @@
 FROM golang:1.19.1 as builder
 
-LABEL org.opencontainers.image.description="Dockerized Kaspa Stratum Bridge"      
+LABEL org.opencontainers.image.description="Dockerized Karlsen Stratum Bridge"      
 LABEL org.opencontainers.image.authors="onemorebsmith"  
 LABEL org.opencontainers.image.source="https://github.com/onemorebsmith/karlsen-stratum-bridge"
               

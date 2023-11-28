@@ -114,7 +114,7 @@ func SendExtranonce(ctx *StratumContext) {
 var walletRegex = regexp.MustCompile("karlsen:[a-z0-9]+")
 
 func CleanWallet(in string) (string, error) {
-	_, err := util.DecodeAddress(in, util.Bech32PrefixKaspa)
+	_, err := util.DecodeAddress(in, util.Bech32PrefixKarlsen)
 	if err == nil {
 		return in, nil // good to go
 	}
