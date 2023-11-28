@@ -257,7 +257,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(ks_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}[${resolution}]) * scalar((coin_price{currency=\"kas\"} * on() vector(${show_balances} == bool 2)) + (${show_balances} * (${show_balances} < bool 2)))",
+          "expr": "increase(ks_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}[${resolution}]) * scalar((coin_price{currency=\"kls\"} * on() vector(${show_balances} == bool 2)) + (${show_balances} * (${show_balances} < bool 2)))",
           "hide": false,
           "instant": false,
           "legendFormat": "Rate",
@@ -326,7 +326,7 @@
             "uid": "wFbInMnVk"
           },
           "editorMode": "code",
-          "expr": "SUM (ks_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}) * scalar((coin_price{currency=\"kas\"} * on() vector(${show_balances} == bool 2)) + (${show_balances} * (${show_balances} < bool 2)))",
+          "expr": "SUM (ks_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}) * scalar((coin_price{currency=\"kls\"} * on() vector(${show_balances} == bool 2)) + (${show_balances} * (${show_balances} < bool 2)))",
           "legendFormat": "Total",
           "range": true,
           "refId": "A"
@@ -394,7 +394,7 @@
             "uid": "wFbInMnVk"
           },
           "editorMode": "code",
-          "expr": "coin_price{currency=\"kas\"}",
+          "expr": "coin_price{currency=\"kls\"}",
           "legendFormat": "USD/KLS",
           "range": true,
           "refId": "A"
