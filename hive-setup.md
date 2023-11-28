@@ -1,6 +1,6 @@
 # Hive configuration
 ## Local bridge (1 bridge per miner)
-This assumes that you will be running the ks_bridge on the mining computer. I've provided 2 template flight sheets that can be imported to jumpstart the config process 
+This assumes that you will be running the kls_bridge on the mining computer. I've provided 2 template flight sheets that can be imported to jumpstart the config process 
 
 ---
 

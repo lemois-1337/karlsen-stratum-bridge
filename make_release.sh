@@ -3,9 +3,9 @@ rm -rf release
 mkdir -p release
 cd release
 VERSION=1.1.6
-ARCHIVE="ks_bridge-${VERSION}"
-OUTFILE="ks_bridge"
-OUTDIR="ks_bridge"
+ARCHIVE="kls_bridge-${VERSION}"
+OUTFILE="kls_bridge"
+OUTDIR="kls_bridge"
 
 # windows
 mkdir -p ${OUTDIR};env GOOS=windows GOARCH=amd64 go build -o ${OUTDIR}/${OUTFILE}.exe ${CMD_PATH};cp ${CMD_PATH}/config.yaml ${OUTDIR}/

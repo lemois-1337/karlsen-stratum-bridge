@@ -1,9 +1,9 @@
 volumes:
   prometheus_data: {}
 services:
-  ks_bridge:
+  kls_bridge:
     image: onemorebsmith/karlsen_bridge:latest
-    container_name: ks_bridge
+    container_name: kls_bridge
     restart: unless-stopped
     user: "0"
     command:
@@ -19,7 +19,7 @@ services:
       - host.docker.internal:host-gateway
   grafana:
     image: grafana/grafana-oss:latest
-    container_name: ks_grafana
+    container_name: kls_grafana
     restart: unless-stopped
     user: "0"
     volumes:
@@ -32,7 +32,7 @@ services:
       - host.docker.internal:host-gateway
   prometheus:
     image: prom/prometheus:latest
-    container_name: ks_prom
+    container_name: kls_prom
     restart: unless-stopped
     volumes:
       - prometheus_data:/prometheus

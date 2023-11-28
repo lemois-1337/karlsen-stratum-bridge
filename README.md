@@ -45,31 +45,31 @@ If the app is run with the `-prom={port}` flag the application will host
 stats on the port specified by `{port}`, these stats are documented in
 the file [prom.go](src/karlsenstratum/prom.go). This is intended to be use
 by prometheus but the stats can be fetched and used independently if
-desired. `curl http://localhost:2114/metrics | grep ks_` will get a
-listing of current stats. All published stats have a `ks_` prefix for
+desired. `curl http://localhost:2114/metrics | grep kls_` will get a
+listing of current stats. All published stats have a `kls_` prefix for
 ease of use.
 
 ```
-user:~$ curl http://localhost:2114/metrics | grep ks_
-# HELP ks_estimated_network_hashrate_gauge Gauge representing the estimated network hashrate
-# TYPE ks_estimated_network_hashrate_gauge gauge
-ks_estimated_network_hashrate_gauge 2.43428982879776e+14
-# HELP ks_network_block_count Gauge representing the network block count
-# TYPE ks_network_block_count gauge
-ks_network_block_count 271966
-# HELP ks_network_difficulty_gauge Gauge representing the network difficulty
-# TYPE ks_network_difficulty_gauge gauge
-ks_network_difficulty_gauge 1.2526479386202519e+14
-# HELP ks_valid_share_counter Number of shares found by worker over time
-# TYPE ks_valid_share_counter counter
-ks_valid_share_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/1.0.8",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 276
-ks_valid_share_counter{ip="192.168.0.24",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 43
-ks_valid_share_counter{ip="192.168.0.65",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 307
-# HELP ks_worker_job_counter Number of jobs sent to the miner by worker over time
-# TYPE ks_worker_job_counter counter
-ks_worker_job_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/1.0.8",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 3471
-ks_worker_job_counter{ip="192.168.0.24",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 3399
-ks_worker_job_counter{ip="192.168.0.65",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 3425
+user:~$ curl http://localhost:2114/metrics | grep kls_
+# HELP kls_estimated_network_hashrate_gauge Gauge representing the estimated network hashrate
+# TYPE kls_estimated_network_hashrate_gauge gauge
+kls_estimated_network_hashrate_gauge 2.43428982879776e+14
+# HELP kls_network_block_count Gauge representing the network block count
+# TYPE kls_network_block_count gauge
+kls_network_block_count 271966
+# HELP kls_network_difficulty_gauge Gauge representing the network difficulty
+# TYPE kls_network_difficulty_gauge gauge
+kls_network_difficulty_gauge 1.2526479386202519e+14
+# HELP kls_valid_share_counter Number of shares found by worker over time
+# TYPE kls_valid_share_counter counter
+kls_valid_share_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/1.0.8",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 276
+kls_valid_share_counter{ip="192.168.0.24",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 43
+kls_valid_share_counter{ip="192.168.0.65",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 307
+# HELP kls_worker_job_counter Number of jobs sent to the miner by worker over time
+# TYPE kls_worker_job_counter counter
+kls_worker_job_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/1.0.8",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 3471
+kls_worker_job_counter{ip="192.168.0.24",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 3399
+kls_worker_job_counter{ip="192.168.0.65",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 3425
 ```
 
 # Install
