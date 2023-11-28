@@ -8,7 +8,7 @@
             "dpool_ssl": false,
             "miner": "bzminer",
             "miner_config": {
-                "url": "127.0.0.1:31337",
+                "url": "127.0.0.1:5555",
                 "algo": "karlsen",
                 "worker": "%WORKER_NAME%",
                 "template": "%WAL%",

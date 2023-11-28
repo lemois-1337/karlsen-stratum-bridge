@@ -45,7 +45,7 @@ This is the preferred configuration as it's a bit easier to setup and the bridge
 
 Ideally you'd run the bridge on the same machine that your karlsend node is running on. You can follow any of the installation methods defined in the main readme of the repo.
 
-Once the bridge is running, miners can be configured simply by replacing the pool URL with the ip:port of the bridge. In the example below the bridge is running on `192.168.0.25:31337`
+Once the bridge is running, miners can be configured simply by replacing the pool URL with the ip:port of the bridge. In the example below the bridge is running on `192.168.0.25:5555`
 
 ![image](https://user-images.githubusercontent.com/59971111/191895463-974c75eb-b31f-4196-a0ac-2f0a689fe829.png)
 
