@@ -395,12 +395,12 @@
           },
           "editorMode": "code",
           "expr": "coin_price{currency=\"kas\"}",
-          "legendFormat": "USD/KAS",
+          "legendFormat": "USD/KLS",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "KAS Price",
+      "title": "KLS Price",
       "type": "stat"
     },
     {
@@ -2145,7 +2145,7 @@
       {
         "current": {
           "selected": true,
-          "text": "KAS",
+          "text": "KLS",
           "value": "1"
         },
         "hide": 0,
@@ -2160,7 +2160,7 @@
           },
           {
             "selected": true,
-            "text": "KAS",
+            "text": "KLS",
             "value": "1"
           },
           {
@@ -2169,7 +2169,7 @@
             "value": "0"
           }
         ],
-        "query": "USD : 2, KAS : 1, Hide : 0",
+        "query": "USD : 2, KLS : 1, Hide : 0",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
