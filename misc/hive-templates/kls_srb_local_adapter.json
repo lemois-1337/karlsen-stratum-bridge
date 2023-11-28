@@ -24,7 +24,7 @@
                 "url": "YOUR_KARLSEND_NODE_IP_HERE:42110",
                 "miner": "kls_bridge",
                 "template": "doesnt.matter",
-                "install_url": "https://github.com/onemorebsmith/karlsen-stratum-bridge/releases/download/v1.1.2/kls_bridge-1.1.2_hive.tar.gz"
+                "install_url": "https://github.com/karlsen-network/karlsen-stratum-bridge/releases/download/v1.1.2/kls_bridge-1.1.2_hive.tar.gz"
             },
             "pool_geo": []
         }

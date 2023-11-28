@@ -2,7 +2,7 @@ volumes:
   prometheus_data: {}
 services:
   kls_bridge:
-    image: onemorebsmith/karlsen_bridge:latest
+    image: karlsennetwork/karlsen_bridge:latest
     container_name: kls_bridge
     restart: unless-stopped
     user: "0"

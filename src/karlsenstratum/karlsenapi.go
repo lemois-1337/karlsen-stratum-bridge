@@ -132,7 +132,7 @@ func (s *KarlsenApi) startBlockTemplateListener(ctx context.Context, blockReadyC
 func (ks *KarlsenApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
 	template, err := ks.karlsend.GetBlockTemplate(client.WalletAddr,
-		fmt.Sprintf(`'%s' via onemorebsmith/karlsen-stratum-bridge_%s`, client.RemoteApp, version))
+		fmt.Sprintf(`'%s' via karlsen-network/karlsen-stratum-bridge_%s`, client.RemoteApp, version))
 	if err != nil {
 		return nil, errors.Wrap(err, "failed fetching new block template from karlsen")
 	}
