@@ -29,7 +29,15 @@ Tips appreciated: `karlsen:qqe3p64wpjf5y27kxppxrgks298ge6lhu6ws7ndx4tswzj7c84qkj
 
 Shares-based work allocation with miner-like periodic stat output:
 
-![image](https://user-images.githubusercontent.com/59971111/191983487-479e19ec-a8cb-4edb-afc4-55a1165e79fc.png)
+```
+===============================================================================
+  worker name   |  avg hashrate  |   acc/stl/inv  |    blocks    |    uptime
+-------------------------------------------------------------------------------
+ lemois         |       0.13GH/s |          3/0/0 |            0 |       6m48s
+-------------------------------------------------------------------------------
+                |       0.13GH/s |          3/0/0 |            0 |       7m20s
+========================================================= kls_bridge_v1.0.0 ===
+```
 
 Optional monitoring UI:
 
@@ -122,7 +130,7 @@ cd cmd/karlsenbridge
 go build .
 ```
 
-Modify the config file in `./cmd/bridge/config.yaml` with your setup,
+Modify the config file in `./cmd/karlsenbridge/config.yaml` with your setup,
 the file comments explain the various flags.
 
 ```
