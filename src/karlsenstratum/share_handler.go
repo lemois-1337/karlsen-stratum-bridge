@@ -275,7 +275,7 @@ func (sh *shareHandler) startStatsThread() error {
 		time.Sleep(10 * time.Second)
 		sh.statsLock.Lock()
 		str := "\n===============================================================================\n"
-		str += "  worker name   |  avg hashrate  |   acc/stl/inv  |    blocks    |    uptime   \n"
+		str += "  worker name   |  avg hashrate  |   acc/stl/inv  |    blocks    |    uptime\n"
 		str += "-------------------------------------------------------------------------------\n"
 		var lines []string
 		totalRate := float64(0)
