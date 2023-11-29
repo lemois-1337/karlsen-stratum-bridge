@@ -1,4 +1,4 @@
-package kaspastratum
+package karlsenstratum
 
 import (
 	"fmt"
@@ -32,16 +32,16 @@ type WorkStats struct {
 }
 
 type shareHandler struct {
-	kaspa        *rpcclient.RPCClient
+	karlsen      *rpcclient.RPCClient
 	stats        map[string]*WorkStats
 	statsLock    sync.Mutex
 	overall      WorkStats
 	tipBlueScore uint64
 }
 
-func newShareHandler(kaspa *rpcclient.RPCClient) *shareHandler {
+func newShareHandler(karlsen *rpcclient.RPCClient) *shareHandler {
 	return &shareHandler{
-		kaspa:     kaspa,
+		karlsen:   karlsen,
 		stats:     map[string]*WorkStats{},
 		statsLock: sync.Mutex{},
 	}
@@ -233,7 +233,7 @@ func (sh *shareHandler) submit(ctx *gostratum.StratumContext,
 		Header:       mutable.ToImmutable(),
 		Transactions: block.Transactions,
 	}
-	_, err := sh.kaspa.SubmitBlock(block)
+	_, err := sh.karlsen.SubmitBlock(block)
 	blockhash := consensushashing.BlockHash(block)
 	// print after the submit to get it submitted faster
 	ctx.Logger.Info(fmt.Sprintf("Submitted block %s", blockhash))
@@ -275,7 +275,7 @@ func (sh *shareHandler) startStatsThread() error {
 		time.Sleep(10 * time.Second)
 		sh.statsLock.Lock()
 		str := "\n===============================================================================\n"
-		str += "  worker name   |  avg hashrate  |   acc/stl/inv  |    blocks    |    uptime   \n"
+		str += "  worker name   |  avg hashrate  |   acc/stl/inv  |    blocks    |    uptime\n"
 		str += "-------------------------------------------------------------------------------\n"
 		var lines []string
 		totalRate := float64(0)
@@ -294,7 +294,7 @@ func (sh *shareHandler) startStatsThread() error {
 		str += "\n-------------------------------------------------------------------------------\n"
 		str += fmt.Sprintf("                | %14.14s | %14.14s | %12d | %11s",
 			rateStr, ratioStr, sh.overall.BlocksFound.Load(), time.Since(start).Round(time.Second))
-		str += "\n========================================================== ks_bridge_" + version + " ===\n"
+		str += "\n========================================================= kls_bridge_" + version + " ===\n"
 		sh.statsLock.Unlock()
 		log.Println(str)
 	}
