@@ -23,6 +23,7 @@ inspiration.
 Tips appreciated: `karlsen:qqe3p64wpjf5y27kxppxrgks298ge6lhu6ws7ndx4tswzj7c84qkjlrspcuxw`
 
 ## Hive Setup
+
 [detailed instructions here](hive-setup.md)
 
 # Features
@@ -39,13 +40,20 @@ Shares-based work allocation with miner-like periodic stat output:
 ========================================================= kls_bridge_v1.0.0 ===
 ```
 
-Optional monitoring UI:
+## Grafana UI
 
-[monitoring-setup.md](monitoring-setup.md)
+The grafana monitoring UI is an optional component but included for
+convenience. It will help to visualize collected statistics.
 
-![image](https://user-images.githubusercontent.com/59971111/192025446-f20d74a5-f9e0-4290-b98b-9f56af8f23b4.png)
+[detailed instructions here](monitoring-setup.md)
 
-![image](https://user-images.githubusercontent.com/59971111/191980688-2d0faf6b-d551-4880-a316-de2303cfeb7d.png)
+![Grafana Monitoring 1](images/grafana-1.png)
+
+![Grafana Monitoring 2](images/grafana-2.png)
+
+![Grafana KLSB Monitoring 1](images/grafana-3.png)
+
+![Grafana KLSB Monitoring 2](images/grafana-4.png)
 
 ## Prometheus API
 
