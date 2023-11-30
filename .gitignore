@@ -2,7 +2,6 @@
 *~
 
 # Databases
-kaspad.db
 *-shm
 *-wal
 
@@ -26,6 +25,5 @@ debug.test
 __debug_bin
 .DS_Store
 
-cmd/kaspabridge/kaspabridge
-cmd/kaspabridge/bridge.
+cmd/karlsenbridge/karlsenbridge
 release/
