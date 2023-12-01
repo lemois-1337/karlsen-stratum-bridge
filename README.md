@@ -89,27 +89,37 @@ kls_worker_job_counter{ip="192.168.0.65",miner="SRBMiner-MULTI/2.4.1",wallet="ka
 
 ## Docker (all-in-one)
 
-Note: This does requires that docker is installed.
+Note: This requires that docker is installed.
 
 `docker compose -f docker-compose-all.yml up -d` will run the bridge with
 default settings. This assumes a local karlsend node with default port
-settings and exposes port 5555 to incoming stratum connections.
+settings and exposes port 5555 to incoming stratum connections. It will
+pull-down a pre-built-image.
 
-This also spins up a local prometheus and grafana instance that gather
-stats and host the metrics dashboard. Once the services are up and
-running you can view the dashboard using `http://127.0.0.1:3000/d/x7cE7G74k/monitoring`
+`docker compose -f docker-compose-all-src.yml up -d` will build the
+bridge component from source and guarantee to be up to date. Use
+`docker compose -f docker-compose-all-src.yml up -d --build kls_bridge`
+to ensure the bridge component is rebuilt after pulling down updates
+from GitHub.
+
+In both cases, it also spins up a local prometheus and grafana instance
+that gather stats and host the metrics dashboard. Once the services are
+up and running you can view the dashboard using `http://127.0.0.1:3000/d/x7cE7G74k/klsb-monitoring`
 
 Default grafana user: `admin`
+
 Default grafana pass: `admin`
 
-Most of the stats on the graph are averaged over an hour time period, so
-keep in mind that the metrics might be inaccurate for the first hour or
-so that the bridge is up.
+Many of the stats on the graph are averaged over a configurable time
+period (24hr default - use the 'resolution' dropdown to change this), so
+keep in mind that the metrics might be incomplete during this initial
+period.
 
 ## Docker (non-compose)
 
 Note: This does not require pulling down the repo, it only requires that
-docker is installed.
+docker is installed. However, as this relies on a prebuilt image from a
+repository, it may not always be up to date with the latest source.
 
 `docker run -p 5555:5555 karlsennetwork/karlsen_bridge:latest --log=false`
 
