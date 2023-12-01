@@ -21,7 +21,7 @@ Tips appreciated: `karlsen:qqe3p64wpjf5y27kxppxrgks298ge6lhu6ws7ndx4tswzj7c84qkj
 
 ## Hive Setup
 
-[detailed instructions here](hive-setup.md)
+[detailed instructions here](docs/hive-setup.md)
 
 # Features
 
@@ -42,15 +42,15 @@ Shares-based work allocation with miner-like periodic stat output:
 The grafana monitoring UI is an optional component but included for
 convenience. It will help to visualize collected statistics.
 
-[detailed instructions here](monitoring-setup.md)
+[detailed instructions here](docs/monitoring-setup.md)
 
-![Grafana Monitoring 1](images/grafana-1.png)
+![Grafana Monitoring 1](docs/images/grafana-1.png)
 
-![Grafana Monitoring 2](images/grafana-2.png)
+![Grafana Monitoring 2](docs/images/grafana-2.png)
 
-![Grafana KLSB Monitoring 1](images/grafana-3.png)
+![Grafana KLSB Monitoring 1](docs/images/grafana-3.png)
 
-![Grafana KLSB Monitoring 2](images/grafana-4.png)
+![Grafana KLSB Monitoring 2](docs/images/grafana-4.png)
 
 ## Prometheus API
 
@@ -135,7 +135,7 @@ This will run the bridge targeting a karlsend node at {karlsend_address}.
 Stratum port accepting connections on {stratum_port}, and only logging
 connection activity, found blocks, and errors.
 
-## Non-Docker (manual build)
+## Build from source (native executable)
 
 Install go 1.18 using whatever package manager is appropriate for your
 system.
