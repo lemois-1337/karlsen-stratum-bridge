@@ -35,6 +35,16 @@ Shares-based work allocation with miner-like periodic stat output:
 ========================================================= kls_bridge_v1.0.0 ===
 ```
 
+## Variable difficulty engine (vardiff)
+
+Multiple miners with significantly different hashrates can be connected
+to the same stratum bridge instance, and the appropriate difficulty
+will automatically be decided for each one. Default settings target
+15 shares/min, resulting in high confidence decisions regarding
+difficulty adjustments, and stable measured hashrates (1hr avg
+hashrates within +/- 10% of actual). The minimum share difficulty is 64
+and optimized for GPUs.
+
 ## Grafana UI
 
 The grafana monitoring UI is an optional component but included for
@@ -92,8 +102,8 @@ kls_worker_job_counter{ip="192.168.0.65",miner="SRBMiner-MULTI/2.4.1",wallet="ka
 
 ## Build from source (native executable)
 
-Install go 1.18 using whatever package manager is appropriate for your
-system.
+Install go 1.18 or later using whatever package manager is approprate
+for your system, or from [https://go.dev/doc/install](https://go.dev/doc/install).
 
 ```
 cd cmd/karlsenbridge

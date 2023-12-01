@@ -13,8 +13,14 @@ karlsend_address: localhost:42110
 # from the miner(s).  Higher values will reduce the number of shares submitted,
 # thereby reducing network traffic and server load, while lower values will
 # increase the number of shares submitted, thereby reducing the amount of time
-# needed for accurate hashrate measurements. If var_diff is enabled,
-# min_share_diff will be the starting difficulty
+# needed for accurate hashrate measurements.
+#
+# If var_diff is enabled, min_share_diff will be the starting difficulty.
+#
+# Default value is chosen to accomodate current top of the line GPUs. If you
+# don't want to change the default to match your device(s), the vardiff engine
+# will adjust to an appropriate diff for lower hashrate devices within a few
+# minutes.
 min_share_diff: 64
 
 # var_diff: if true, enables the auto-adjusting variable share diff mechanism.
@@ -23,6 +29,19 @@ min_share_diff: 64
 # rate, and sends an updated min diff per client if necessary. Max tolerance
 # is +/- 5% after 4hrs.
 var_diff: true
+
+# shares_per_min: number of shares per minute the vardiff engine should target.
+# Default value is chosen to allow for 95% confidence in measurement accuracy,
+# which affects fidelity of difficulty update decisions, as well as hashrate
+# stability (measured 1hr avg hashrate should be within +/- 10% of actual, with
+# the noted confidence.)  Higher values will result in better vardiff engine
+# performance and increased hashrate stability.  Lower values will cause
+# vardiff to behave more erratically, while measured hashrate will display
+# larger variations.
+#
+# Example values and their resulting confidence levels:
+# 20 => 99%, 15 => 95%, 12 => 90%
+shares_per_min: 15
 
 # var_diff_stats: if true, print vardiff engine stats to the log every 10s
 var_diff_stats: false

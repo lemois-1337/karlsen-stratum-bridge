@@ -7,11 +7,8 @@ services:
     restart: unless-stopped
     user: "0"
     command:
-      - '-log=true'
       - '-stats=false'
-      - '-stratum=:5555'
-      - '-prom=:2114'
-      - '-karlsen=host.docker.internal:16110'
+      - '-karlsen=host.docker.internal:42110'
     ports:
       - 5555:5555
       - 2114:2114
