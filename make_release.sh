@@ -2,7 +2,7 @@ CMD_PATH="../cmd/karlsenbridge"
 rm -rf release
 mkdir -p release
 cd release
-VERSION=1.0.0
+VERSION=1.1.0
 ARCHIVE="kls_bridge-${VERSION}"
 OUTFILE="kls_bridge"
 OUTDIR="kls_bridge"
