@@ -52,19 +52,6 @@ convenience. It will help to visualize collected statistics.
 
 [detailed instructions here](docs/monitoring-setup.md)
 
-![Grafana Monitoring 1](docs/images/grafana-1.png)
-
-![Grafana Monitoring 2](docs/images/grafana-2.png)
-
-![Grafana KLSB Monitoring 1](docs/images/grafana-3.png)
-
-![Grafana KLSB Monitoring 2](docs/images/grafana-4.png)
-
-Many of the stats on the graph are averaged over a configurable time
-period (24hr default - use the 'resolution' dropdown to change this), so
-keep in mind that the metrics might be incomplete during this initial
-period.
-
 ## Prometheus API
 
 If the app is run with the `-prom={port}` flag the application will host
