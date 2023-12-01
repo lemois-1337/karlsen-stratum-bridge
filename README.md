@@ -9,13 +9,11 @@ macOS and HiveOS.
 
 * [srbminer](https://github.com/doktor83/SRBMiner-Multi/releases)
 
-No fee, forever.
-
 Discord discussions/issues: [here](https://discord.gg/pPNESjGfb5)
 
 Huge shoutout to https://github.com/KaffinPX/KStratum and
-https://github.com/onemorebsmith/karlsen-stratum-bridge for the
-inspiration.
+https://github.com/onemorebsmith/karlsen-stratum-bridge and
+https://github.com/rdugan/kaspa-stratum-bridge for the inspiration.
 
 Tips appreciated: `karlsen:qqe3p64wpjf5y27kxppxrgks298ge6lhu6ws7ndx4tswzj7c84qkjlrspcuxw`
 
@@ -52,6 +50,11 @@ convenience. It will help to visualize collected statistics.
 
 ![Grafana KLSB Monitoring 2](docs/images/grafana-4.png)
 
+Many of the stats on the graph are averaged over a configurable time
+period (24hr default - use the 'resolution' dropdown to change this), so
+keep in mind that the metrics might be incomplete during this initial
+period.
+
 ## Prometheus API
 
 If the app is run with the `-prom={port}` flag the application will host
@@ -87,54 +90,6 @@ kls_worker_job_counter{ip="192.168.0.65",miner="SRBMiner-MULTI/2.4.1",wallet="ka
 
 # Install
 
-## Docker (all-in-one)
-
-Note: This requires that docker is installed.
-
-`docker compose -f docker-compose-all.yml up -d` will run the bridge with
-default settings. This assumes a local karlsend node with default port
-settings and exposes port 5555 to incoming stratum connections. It will
-pull-down a pre-built-image.
-
-`docker compose -f docker-compose-all-src.yml up -d` will build the
-bridge component from source and guarantee to be up to date. Use
-`docker compose -f docker-compose-all-src.yml up -d --build kls_bridge`
-to ensure the bridge component is rebuilt after pulling down updates
-from GitHub.
-
-In both cases, it also spins up a local prometheus and grafana instance
-that gather stats and host the metrics dashboard. Once the services are
-up and running you can view the dashboard using `http://127.0.0.1:3000/d/x7cE7G74k/klsb-monitoring`
-
-Default grafana user: `admin`
-
-Default grafana pass: `admin`
-
-Many of the stats on the graph are averaged over a configurable time
-period (24hr default - use the 'resolution' dropdown to change this), so
-keep in mind that the metrics might be incomplete during this initial
-period.
-
-## Docker (non-compose)
-
-Note: This does not require pulling down the repo, it only requires that
-docker is installed. However, as this relies on a prebuilt image from a
-repository, it may not always be up to date with the latest source.
-
-`docker run -p 5555:5555 karlsennetwork/karlsen_bridge:latest --log=false`
-
-This will run the bridge with default settings. This assumes a local
-karlsend node with default port settings and exposes port 5555 to incoming
-stratum connections.
-
-Advanced and customized configuration.
-
-`docker run -p {stratum_port}:5555 karlsennetwork/karlsen_bridge --log=false --karlsen={karlsend_address} --stats={false}`
-
-This will run the bridge targeting a karlsend node at {karlsend_address}.
-Stratum port accepting connections on {stratum_port}, and only logging
-connection activity, found blocks, and errors.
-
 ## Build from source (native executable)
 
 Install go 1.18 using whatever package manager is appropriate for your
@@ -160,3 +115,70 @@ cd cmd/karlsenbridge
 go build .
 ./karlsenbridge
 ```
+
+## Docker (all-in-one)
+
+Best option for users who want access to reporting, and aren't already
+using Grafana/Prometheus. Requires a local copy of this repository, and
+docker installation.
+
+[Install Docker](https://docs.docker.com/engine/install/) using the
+appropriate method for your OS. The docker commands below are assuming a
+server type installation - details may be different for a desktop
+installation.
+
+The following will run the bridge assuming a local karlsend node with
+default port settings, and listen on port 5555 for incoming stratum
+connections.
+
+```
+git clone https://github.com/karlsen-network/karlsen-stratum-bridge.git
+cd karlsen-stratum-bridge
+docker compose -f docker-compose-all-src.yml up -d --build
+```
+
+These settings can be updated in the [config.yaml](cmd/karlsenbridge/config.yaml)
+file, or overridden by modifying, adding or deleting the parameters in the
+`command` section of the `docker-compose-all-src.yml` file. Additionally,
+Prometheus (the stats database) and Grafana (the dashboard) will be
+started and accessible on ports 9090 and 3000 respectively. Once all
+services are running, the dashboard should be reachable at
+`http://127.0.0.1:3000/d/x7cE7G74k1/klsb-monitoring` with default
+username and password `admin`.
+
+These commands builds the bridge component from source, rather than
+the previous behavior of pulling down a pre-built image. You may still
+use the pre-built image by replacing `docker-compose-all-src.yml` with
+`docker-compose-all.yml`, but it is not guaranteed to be up to date, so
+compiling from source is the better alternative.
+
+## Docker (bridge only)
+
+Best option for users who want docker encapsulation, and don't need
+reporting, or are already using Grafana/Prometheus. Requires a local
+copy of this repository, and docker installation.
+
+[Install Docker](https://docs.docker.com/engine/install/) using the
+appropriate method for your OS. The docker commands below are assuming a
+server type installation - details may be different for a desktop
+installation.
+
+The following will run the bridge assuming a local karlsend node with
+default port settings, and listen on port 5555 for incoming stratum
+connections.
+
+```
+git clone https://github.com/karlsen-network/karlsen-stratum-bridge.git
+cd karlsen-stratum-bridge
+docker compose -f docker-compose-bridge-src.yml up -d --build
+```
+
+These settings can be updated in the [config.yaml](cmd/karlsenbridge/config.yaml)
+file, or overridden by modifying, adding or deleting the parameters in the
+`command` section of the `docker-compose-bridge-src.yml`
+
+These commands builds the bridge component from source, rather than the
+previous behavior of pulling down a pre-built image. You may still use
+the pre-built image by issuing the command `docker run -p 5555:5555 karlsennetwork/karlsen_bridge:latest`,
+but it is not guaranteed to be up to date, so compiling from source is
+the better alternative.
