@@ -7,10 +7,7 @@ This daemon is confirmed working with the miners below in both dual-mining
 and karlsen-only modes (for those that support it) and Windows, Linux,
 macOS and HiveOS.
 
-* bzminer
-* lolminer
-* srbminer
-* teamreadminer
+* [srbminer](https://github.com/doktor83/SRBMiner-Multi/releases)
 
 No fee, forever.
 
@@ -78,14 +75,14 @@ kls_network_block_count 271966
 kls_network_difficulty_gauge 1.2526479386202519e+14
 # HELP kls_valid_share_counter Number of shares found by worker over time
 # TYPE kls_valid_share_counter counter
-kls_valid_share_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/1.0.8",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 276
-kls_valid_share_counter{ip="192.168.0.24",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 43
-kls_valid_share_counter{ip="192.168.0.65",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 307
+kls_valid_share_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/2.4.1",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 276
+kls_valid_share_counter{ip="192.168.0.24",miner="SRBMiner-MULTI/2.4.1",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 43
+kls_valid_share_counter{ip="192.168.0.65",miner="SRBMiner-MULTI/2.4.1",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 307
 # HELP kls_worker_job_counter Number of jobs sent to the miner by worker over time
 # TYPE kls_worker_job_counter counter
-kls_worker_job_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/1.0.8",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 3471
-kls_worker_job_counter{ip="192.168.0.24",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 3399
-kls_worker_job_counter{ip="192.168.0.65",miner="BzMiner-v11.1.0",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 3425
+kls_worker_job_counter{ip="192.168.0.17",miner="SRBMiner-MULTI/2.4.1",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="002"} 3471
+kls_worker_job_counter{ip="192.168.0.24",miner="SRBMiner-MULTI/2.4.1",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="003"} 3399
+kls_worker_job_counter{ip="192.168.0.65",miner="SRBMiner-MULTI/2.4.1",wallet="karlsen:qzk3uh2twkhu0fmuq50mdy3r2yzuwqvstq745hxs7tet25hfd4egcafcdmpdl",worker="001"} 3425
 ```
 
 # Install

@@ -19,3 +19,6 @@ tar -czvf ${ARCHIVE}.tar.gz ${OUTDIR}
 # hive
 cp ../misc/hive/* ${OUTDIR}
 tar -czvf ${ARCHIVE}_hive.tar.gz ${OUTDIR}
+
+# checksums
+sha256sum ${ARCHIVE}.tar.gz ${ARCHIVE}.zip ${ARCHIVE}_hive.tar.gz > SHA256SUMS
