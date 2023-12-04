@@ -1,4 +1,5 @@
 {
+    "name": "kls_srb_local_adapter",
     "isFavorite": false,
     "items": [
         {
@@ -8,8 +9,9 @@
             "miner": "srbminer",
             "miner_config": {
                 "url": "127.0.0.1:5555",
-                "algo": "karlsen",
+                "algo": "karlsenhash",
                 "worker": "%WORKER_NAME%",
+                "template": "%WAL%",
                 "user_config": "--disable-cpu"
             },
             "pool_geo": []
@@ -24,7 +26,7 @@
                 "url": "YOUR_KARLSEND_NODE_IP_HERE:42110",
                 "miner": "kls_bridge",
                 "template": "doesnt.matter",
-                "install_url": "https://github.com/karlsen-network/karlsen-stratum-bridge/releases/download/v1.0.0/kls_bridge-1.0.0_hive.tar.gz"
+                "install_url": "https://github.com/karlsen-network/karlsen-stratum-bridge/releases/download/v1.1.0/kls_bridge-1.1.0_hive.tar.gz"
             },
             "pool_geo": []
         }

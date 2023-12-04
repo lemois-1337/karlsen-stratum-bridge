@@ -13,8 +13,8 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-const version = "v1.0.0"
-const minBlockWaitTime = 500 * time.Millisecond
+const version = "v1.1.0"
+const minBlockWaitTime = 3 * time.Second
 
 type BridgeConfig struct {
 	StratumPort     string        `yaml:"stratum_port"`
@@ -25,6 +25,9 @@ type BridgeConfig struct {
 	HealthCheckPort string        `yaml:"health_check_port"`
 	BlockWaitTime   time.Duration `yaml:"block_wait_time"`
 	MinShareDiff    uint          `yaml:"min_share_diff"`
+	VarDiff         bool          `yaml:"var_diff"`
+	SharesPerMin    uint          `yaml:"shares_per_min"`
+	VarDiffStats    bool          `yaml:"var_diff_stats"`
 	ExtranonceSize  uint          `yaml:"extranonce_size"`
 }
 
@@ -60,7 +63,7 @@ func ListenAndServe(cfg BridgeConfig) error {
 	}
 
 	blockWaitTime := cfg.BlockWaitTime
-	if blockWaitTime < minBlockWaitTime {
+	if blockWaitTime == 0 {
 		blockWaitTime = minBlockWaitTime
 	}
 	ksApi, err := NewKarlsenAPI(cfg.RPCServer, blockWaitTime, logger)
@@ -78,8 +81,8 @@ func ListenAndServe(cfg BridgeConfig) error {
 
 	shareHandler := newShareHandler(ksApi.karlsend)
 	minDiff := cfg.MinShareDiff
-	if minDiff < 1 {
-		minDiff = 1
+	if minDiff == 0 {
+		minDiff = 4
 	}
 	extranonceSize := cfg.ExtranonceSize
 	if extranonceSize > 3 {
@@ -109,6 +112,10 @@ func ListenAndServe(cfg BridgeConfig) error {
 	ksApi.Start(ctx, func() {
 		clientHandler.NewBlockAvailable(ksApi)
 	})
+
+	if cfg.VarDiff {
+		go shareHandler.startVardiffThread(cfg.SharesPerMin, cfg.VarDiffStats)
+	}
 
 	if cfg.PrintStats {
 		go shareHandler.startStatsThread()
