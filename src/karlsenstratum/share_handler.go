@@ -204,7 +204,7 @@ func (sh *shareHandler) HandleSubmit(ctx *gostratum.StratumContext, event gostra
 	}
 	mutableHeader := converted.Header.ToMutable()
 	mutableHeader.SetNonce(submitInfo.nonceVal)
-	powState := pow.NewState(mutableHeader)
+	powState := pow.NewState(mutableHeader, false)
 	powValue := powState.CalculateProofOfWorkValue()
 
 	// The block hash must be less or equal than the claimed target.
