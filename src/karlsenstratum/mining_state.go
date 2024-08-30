@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/karlsen-network/karlsen-stratum-bridge/src/gostratum"
-	"github.com/karlsen-network/karlsend/app/appmessage"
+	"github.com/karlsen-network/karlsen-stratum-bridge/v2/src/gostratum"
+	"github.com/karlsen-network/karlsend/v2/app/appmessage"
 )
 
 const maxjobs = 32
