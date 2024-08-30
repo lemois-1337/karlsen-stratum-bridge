@@ -9,7 +9,9 @@ macOS and HiveOS.
 
 * [srbminer](https://github.com/doktor83/SRBMiner-Multi/releases)
 
-Discord discussions/issues: [here](https://discord.gg/pPNESjGfb5)
+Discord discussions/issues: [here](https://discord.gg/ZPZRvgMJDT)
+
+[![Join the Karlsen Discord Server](https://img.shields.io/discord/1169939685280337930.svg?label=&logo=discord&logoColor=ffffff)](https://discord.gg/ZPZRvgMJDT)
 
 Huge shoutout to https://github.com/KaffinPX/KStratum and
 https://github.com/onemorebsmith/karlsen-stratum-bridge and
@@ -19,7 +21,7 @@ Tips appreciated: `karlsen:qqe3p64wpjf5y27kxppxrgks298ge6lhu6ws7ndx4tswzj7c84qkj
 
 ## Hive Setup
 
-[detailed instructions here](docs/hive-setup.md)
+[Detailed Instructions here](docs/hive-setup.md)
 
 # Features
 
@@ -32,7 +34,7 @@ Shares-based work allocation with miner-like periodic stat output:
  lemois         |       0.13GH/s |          3/0/0 |            0 |       6m48s
 -------------------------------------------------------------------------------
                 |       0.13GH/s |          3/0/0 |            0 |       7m20s
-========================================================= kls_bridge_v1.1.0 ===
+========================================================= kls_bridge_v2.0.0 ===
 ```
 
 ## Variable difficulty engine (vardiff)
@@ -50,7 +52,7 @@ and optimized for GPUs.
 The grafana monitoring UI is an optional component but included for
 convenience. It will help to visualize collected statistics.
 
-[detailed instructions here](docs/monitoring-setup.md)
+[Detailed Instructions here](docs/monitoring-setup.md)
 
 ## Prometheus API
 

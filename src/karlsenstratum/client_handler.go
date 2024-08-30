@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/karlsen-network/karlsen-stratum-bridge/src/gostratum"
+	"github.com/karlsen-network/karlsen-stratum-bridge/v2/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 )
@@ -133,6 +133,11 @@ func (c *clientListener) NewBlockAvailable(kapi *KarlsenApi) {
 			}
 
 			varDiff := c.shareHandler.getClientVardiff(client)
+			if varDiff < c.minShareDiff {
+				stats := c.shareHandler.getCreateStats(client)
+				updateVarDiff(stats, c.minShareDiff)
+				varDiff = c.minShareDiff
+			}
 			if varDiff != state.stratumDiff.diffValue {
 				// send updated vardiff
 				client.Logger.Info(fmt.Sprintf("changing diff from %f to %f", state.stratumDiff.diffValue, varDiff))

@@ -8,6 +8,7 @@ stratum_port: :5555
 # uncomment for to use a public node
 # karlsend_address: 46.17.104.200:42110
 karlsend_address: localhost:42110
+#karlsend_address: localhost:42210
 
 # min_share_diff: only accept shares of the specified difficulty (or higher)
 # from the miner(s).  Higher values will reduce the number of shares submitted,

@@ -3,8 +3,8 @@ package karlsenstratum
 import (
 	"testing"
 
-	"github.com/karlsen-network/karlsen-stratum-bridge/src/gostratum"
-	"github.com/karlsen-network/karlsend/app/appmessage"
+	"github.com/karlsen-network/karlsen-stratum-bridge/v2/src/gostratum"
+	"github.com/karlsen-network/karlsend/v2/app/appmessage"
 )
 
 func TestPromValid(t *testing.T) {

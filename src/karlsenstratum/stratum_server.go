@@ -7,13 +7,13 @@ import (
 	"os"
 	"time"
 
-	"github.com/karlsen-network/karlsen-stratum-bridge/src/gostratum"
+	"github.com/karlsen-network/karlsen-stratum-bridge/v2/src/gostratum"
 	"github.com/mattn/go-colorable"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
 
-const version = "v1.1.0"
+const version = "v2.0.0"
 const minBlockWaitTime = 3 * time.Second
 
 type BridgeConfig struct {
