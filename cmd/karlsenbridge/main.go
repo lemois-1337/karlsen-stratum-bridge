@@ -38,6 +38,7 @@ func main() {
 	flag.StringVar(&cfg.PromPort, "prom", cfg.PromPort, "address to serve prom stats, default `:2112`")
 	flag.BoolVar(&cfg.UseLogFile, "log", cfg.UseLogFile, "if true will output errors to log file, default `true`")
 	flag.StringVar(&cfg.HealthCheckPort, "hcp", cfg.HealthCheckPort, `(rarely used) if defined will expose a health check on /readyz, default ""`)
+	flag.BoolVar(&cfg.TestnetMining, "testnetmining", cfg.TestnetMining, "enable testnet mining mode, default `false`")
 	flag.Parse()
 
 	log.Println("----------------------------------")
@@ -54,6 +55,7 @@ func main() {
 	log.Printf("\tblock wait:      %s", cfg.BlockWaitTime)
 	log.Printf("\textranonce size: %d", cfg.ExtranonceSize)
 	log.Printf("\thealth check:    %s", cfg.HealthCheckPort)
+	log.Printf("\ttestnet mining:  %t", cfg.TestnetMining)
 	log.Println("----------------------------------")
 
 	if err := karlsenstratum.ListenAndServe(cfg); err != nil {

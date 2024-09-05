@@ -29,6 +29,7 @@ type BridgeConfig struct {
 	SharesPerMin    uint          `yaml:"shares_per_min"`
 	VarDiffStats    bool          `yaml:"var_diff_stats"`
 	ExtranonceSize  uint          `yaml:"extranonce_size"`
+	TestnetMining   bool          `yaml:"testnet_mining"`
 }
 
 func configureZap(cfg BridgeConfig) (*zap.SugaredLogger, func()) {
@@ -89,7 +90,7 @@ func ListenAndServe(cfg BridgeConfig) error {
 		extranonceSize = 3
 	}
 	clientHandler := newClientListener(logger, shareHandler, float64(minDiff), int8(extranonceSize))
-	handlers := gostratum.DefaultHandlers()
+	handlers := gostratum.DefaultHandlers(cfg.TestnetMining)
 	// override the submit handler with an actual useful handler
 	handlers[string(gostratum.StratumMethodSubmit)] =
 		func(ctx *gostratum.StratumContext, event gostratum.JsonRpcEvent) error {
