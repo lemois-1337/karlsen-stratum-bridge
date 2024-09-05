@@ -30,24 +30,26 @@ func DefaultLogger() *zap.Logger {
 	))
 }
 
-func DefaultConfig(logger *zap.Logger) StratumListenerConfig {
+func DefaultConfig(logger *zap.Logger, testnetMining bool) StratumListenerConfig {
 	return StratumListenerConfig{
 		StateGenerator: func() any { return nil },
-		HandlerMap:     DefaultHandlers(),
+		HandlerMap:     DefaultHandlers(testnetMining),
 		Port:           ":5555",
 		Logger:         logger,
 	}
 }
 
-func DefaultHandlers() StratumHandlerMap {
+func DefaultHandlers(testnetMining bool) StratumHandlerMap {
 	return StratumHandlerMap{
 		string(StratumMethodSubscribe): HandleSubscribe,
-		string(StratumMethodAuthorize): HandleAuthorize,
-		string(StratumMethodSubmit):    HandleSubmit,
+		string(StratumMethodAuthorize): func(ctx *StratumContext, event JsonRpcEvent) error {
+			return HandleAuthorize(ctx, event, testnetMining)
+		},
+		string(StratumMethodSubmit): HandleSubmit,
 	}
 }
 
-func HandleAuthorize(ctx *StratumContext, event JsonRpcEvent) error {
+func HandleAuthorize(ctx *StratumContext, event JsonRpcEvent, testnetMining bool) error {
 	if len(event.Params) < 1 {
 		return fmt.Errorf("malformed event from miner, expected param[1] to be address")
 	}
@@ -61,8 +63,8 @@ func HandleAuthorize(ctx *StratumContext, event JsonRpcEvent) error {
 		address = parts[0]
 		workerName = parts[1]
 	}
-	var err error
-	address, err = CleanWallet(address)
+
+	address, err := CleanWallet(address, testnetMining)
 	if err != nil {
 		return fmt.Errorf("invalid wallet format %s: %w", address, err)
 	}
@@ -106,31 +108,40 @@ func HandleSubmit(ctx *StratumContext, event JsonRpcEvent) error {
 
 func SendExtranonce(ctx *StratumContext) {
 	if err := ctx.Send(NewEvent("", "set_extranonce", []any{ctx.Extranonce})); err != nil {
-		// should we doing anything further on failure
 		ctx.Logger.Error(errors.Wrap(err, "failed to set extranonce").Error(), zap.Any("context", ctx))
 	}
 }
 
-var walletRegex = regexp.MustCompile("karlsen:[a-z0-9]+")
-
-//var walletRegex = regexp.MustCompile("karlsentest:[a-z0-9]+")
-
-func CleanWallet(in string) (string, error) {
-	_, err := util.DecodeAddress(in, util.Bech32PrefixKarlsen)
-	if err == nil {
-		return in, nil // good to go
-	}
-	if !strings.HasPrefix(in, "karlsen:") {
-		return CleanWallet("karlsen:" + in)
-	}
-	//if !strings.HasPrefix(in, "karlsentest:") {
-	//	return CleanWallet("karlsentest:" + in)
-	//}
-
-	// has karlsen: prefix but other weirdness somewhere
-	if walletRegex.MatchString(in) {
-		return in[0:69], nil
-		//return in[0:73], nil
+// CleanWallet function handles both testnet and mainnet wallet addresses
+func CleanWallet(in string, testnetMining bool) (string, error) {
+	if testnetMining {
+		// handle testnet wallet prefix and regex
+		fmt.Printf("Switching to testnet address handling: %s\n", in)
+		_, err := util.DecodeAddress(in, util.Bech32PrefixKarlsenTest)
+		if err == nil {
+			return in, nil // valid testnet address
+		}
+		if !strings.HasPrefix(in, "karlsentest:") {
+			in = "karlsentest:" + in
+		}
+		// validate the address format using regex
+		if regexp.MustCompile("^karlsentest:[a-z0-9]+$").MatchString(in) {
+			return in[:73], nil
+		}
+	} else {
+		// handle mainnet wallet prefix and regex
+		fmt.Printf("Handling mainnet address: %s\n", in)
+		_, err := util.DecodeAddress(in, util.Bech32PrefixKarlsen)
+		if err == nil {
+			return in, nil // valid mainnet address
+		}
+		if !strings.HasPrefix(in, "karlsen:") {
+			in = "karlsen:" + in
+		}
+		// validate the address format using regex
+		if regexp.MustCompile("^karlsen:[a-z0-9]+$").MatchString(in) {
+			return in[:69], nil
+		}
 	}
 	return "", errors.New("unable to coerce wallet to valid karlsen address")
 }
